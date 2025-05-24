@@ -183,7 +183,7 @@ func menuMahasiswa() {
 		fmt.Println("c. Ubah Mahasiswa")
 		fmt.Println("d. Hapus Mahasiswa")
 		fmt.Println("e. Cari Mahasiswa")
-		fmt.Println("f. Lihat Mahasiswa Terurut")
+		fmt.Println("f. Lihat Mahasiswa Secara Terurut")
 		fmt.Println("g. Kembali")
 		fmt.Print("Input: ")
 		input := readLine()
@@ -219,7 +219,7 @@ func menuMahasiswa() {
 }
 
 func tampilMahasiswa() {
-	fmt.Printf("%-20s %-20s %-20s\n", "NIM", "Nama", "Prodi")
+	fmt.Printf("\n%-20s %-20s %-20s\n", "NIM", "Nama", "Prodi")
 	fmt.Println(strings.Repeat("-", 50))
 	for _, m := range mahasiswa {
 		fmt.Printf("%-20d %-20s %-20s\n", m.NIM, m.Nama, m.Prodi)
@@ -253,6 +253,7 @@ func addMahasiswa() {
 		fmt.Print("Masukkan Prodi: ")
 		prodi := readLine()
 		mahasiswa = append(mahasiswa, Mahasiswa{nim, nama, prodi})
+		fmt.Println("Mahasiswa berhasil ditambahkan")
 		break
 	}
 }
@@ -267,12 +268,13 @@ func updateMahasiswa() {
 	}
 	for i, m := range mahasiswa {
 		if m.NIM == nim {
-			fmt.Print("Masukkan Nama baru: ")
+			fmt.Print("Masukkan nama baru: ")
 			nama := readLine()
-			fmt.Print("Masukkan Prodi baru: ")
+			fmt.Print("Masukkan prodi baru: ")
 			prodi := readLine()
 			mahasiswa[i].Nama = nama
 			mahasiswa[i].Prodi = prodi
+			fmt.Printf("Data mahasiswa dengan NIM %d berhasil di perbarui\n", nim)
 			return
 		}
 	}
@@ -290,6 +292,7 @@ func deleteMahasiswa() {
 	for i, m := range mahasiswa {
 		if m.NIM == nim {
 			mahasiswa = append(mahasiswa[:i], mahasiswa[i+1:]...)
+			fmt.Printf("Data mahasiswa dengan NIM %d berhasil di hapus\n", nim)
 			return
 		}
 	}
@@ -300,7 +303,7 @@ func searchMahasiswa() {
 	fmt.Print("Masukkan nama mahasiswa: ")
 	nama := readLine()
 	found := false
-	fmt.Printf("%-20s %-20s %-20s\n", "NIM", "Nama", "Prodi")
+	fmt.Printf("\n%-20s %-20s %-20s\n", "NIM", "Nama", "Prodi")
 	fmt.Println(strings.Repeat("-", 50))
 	for _, m := range mahasiswa {
 		if strings.HasPrefix(strings.ToLower(m.Nama), strings.ToLower(nama)) {
@@ -370,7 +373,7 @@ func menuMataKuliah() {
 }
 
 func tampilMataKuliah() {
-	fmt.Printf("%-10s %-30s %-5s %-10s %-10s\n", "KodeMK", "NamaMK", "SKS", "Hari", "Jam")
+	fmt.Printf("\n%-10s %-30s %-5s %-10s %-10s\n", "KodeMK", "NamaMK", "SKS", "Hari", "Jam")
 	fmt.Println(strings.Repeat("-", 60))
 	for _, mk := range mataKuliah {
 		fmt.Printf("%-10s %-30s %-5d %-10s %-10s\n", mk.KodeMK, mk.NamaMK, mk.SKS, mk.Hari, mk.Jam)
@@ -394,7 +397,7 @@ func addMataKuliah() {
 			continue
 		}
 
-		fmt.Print("Masukkan Nama MK: ")
+		fmt.Print("Masukkan nama MK: ")
 		nama := readLine()
 		fmt.Print("Masukkan SKS: ")
 		sksStr := readLine()
@@ -409,6 +412,8 @@ func addMataKuliah() {
 		jam := readLine()
 
 		mataKuliah = append(mataKuliah, MataKuliah{kode, nama, sks, hari, jam})
+
+		fmt.Println("Mata Kuliah berhasil ditambahkan")
 		break
 	}
 }
@@ -433,6 +438,7 @@ func updateMataKuliah() {
 			jam := readLine()
 
 			mataKuliah[i] = MataKuliah{kode, nama, sks, hari, jam}
+			fmt.Printf("Data mata kuliah dengan kode %s berhasil di perbarui\n", kode)
 			return
 		}
 	}
@@ -445,6 +451,7 @@ func deleteMataKuliah() {
 	for i, mk := range mataKuliah {
 		if mk.KodeMK == kode {
 			mataKuliah = append(mataKuliah[:i], mataKuliah[i+1:]...)
+			fmt.Printf("Data mata kuliah dengan kode %s berhasil di hapus\n", kode)
 			return
 		}
 	}
@@ -455,7 +462,7 @@ func searchMataKuliah() {
 	fmt.Print("Masukkan nama mata kuliah: ")
 	nama := readLine()
 	found := false
-	fmt.Printf("%-10s %-30s %-5s %-10s %-10s\n", "KodeMK", "NamaMK", "SKS", "Hari", "Jam")
+	fmt.Printf("\n%-10s %-30s %-5s %-10s %-10s\n", "KodeMK", "NamaMK", "SKS", "Hari", "Jam")
 	fmt.Println(strings.Repeat("-", 60))
 	for _, mk := range mataKuliah {
 		if strings.Contains(strings.ToLower(mk.NamaMK), strings.ToLower(nama)) {
@@ -526,7 +533,7 @@ func menuJadwalKuliah() {
 }
 
 func tampilJadwal() {
-	fmt.Printf("%-20s %-10s %-10s %-10s\n", "NIM", "KodeMK", "Hari", "Jam")
+	fmt.Printf("\n%-20s %-10s %-10s %-10s\n", "NIM", "KodeMK", "Hari", "Jam")
 	fmt.Println(strings.Repeat("-", 40))
 	for _, jd := range jadwalKuliah {
 		fmt.Printf("%-20d %-10s %-10s %-10s\n", jd.NIM, jd.KodeMK, jd.Hari, jd.Jam)
@@ -692,7 +699,7 @@ func updateJadwal() {
 
 	// Update jadwal
 	jadwalKuliah[index] = JadwalKuliah{nim, kodeBaru, hariBaru, jamBaru}
-	fmt.Println("Jadwal berhasil diupdate.")
+	fmt.Printf("Jadwal berhasil diperbarui: NIM %d, KodeMK Lama %s, KodeMK Baru %s\n", nim, kodeLama, kodeBaru)
 }
 
 func deleteJadwal() {
@@ -703,20 +710,55 @@ func deleteJadwal() {
 		fmt.Println("NIM harus berupa angka.")
 		return
 	}
-	for i, jd := range jadwalKuliah {
+
+	found := false
+	for _, jd := range jadwalKuliah {
 		if jd.NIM == nim {
-			jadwalKuliah = append(jadwalKuliah[:i], jadwalKuliah[i+1:]...)
-			return
+			found = true
+			break
 		}
 	}
-	fmt.Println("Jadwal tidak ditemukan.")
+
+	if !found {
+		fmt.Println("Tidak ditemukan jadwal dengan NIM tersebut.")
+		return
+	}
+
+	fmt.Print("Masukkan KodeMK yang ingin dihapus (atau ketik 'hapus semua' untuk menghapus semua jadwal dari NIM ini): ")
+	kodeMK := readLine()
+
+	if kodeMK == "hapus semua" {
+		newJadwal := []JadwalKuliah{}
+		for _, jd := range jadwalKuliah {
+			if jd.NIM != nim {
+				newJadwal = append(newJadwal, jd)
+			}
+		}
+		jadwalKuliah = newJadwal
+		fmt.Printf("Semua jadwal dari NIM %d berhasil dihapus\n", nim)
+		return
+	}
+
+	deleted := false
+	for i := 0; i < len(jadwalKuliah); i++ {
+		if jadwalKuliah[i].NIM == nim && jadwalKuliah[i].KodeMK == kodeMK {
+			jadwalKuliah = append(jadwalKuliah[:i], jadwalKuliah[i+1:]...)
+			deleted = true
+			fmt.Printf("Jadwal dari NIM %d dengan kode MK %s berhasil dihapus\n", nim, kodeMK)
+			break
+		}
+	}
+
+	if !deleted {
+		fmt.Println("KodeMK tidak ditemukan untuk NIM tersebut.")
+	}
 }
 
 func searchJadwal() {
 	fmt.Print("Cari berdasarkan NIM/KodeMK: ")
 	query := readLine()
 	found := false
-	fmt.Printf("%-20s %-10s %-10s %-10s\n", "NIM", "KodeMK", "Hari", "Jam")
+	fmt.Printf("\n%-20s %-10s %-10s %-10s\n", "NIM", "KodeMK", "Hari", "Jam")
 	fmt.Println(strings.Repeat("-", 40))
 	for _, jd := range jadwalKuliah {
 		if strings.Contains(strconv.Itoa(jd.NIM), query) || strings.Contains(strings.ToLower(jd.KodeMK), strings.ToLower(query)) {
