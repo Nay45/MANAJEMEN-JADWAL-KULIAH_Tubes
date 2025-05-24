@@ -35,6 +35,9 @@ var jadwalKuliah []JadwalKuliah
 
 var reader = bufio.NewReader(os.Stdin)
 
+// =====================
+// MENU UTAMA
+// =====================
 func main() {
 	seedData()
 	for {
@@ -64,38 +67,41 @@ func main() {
 	}
 }
 
+// =====================
+// SEEDING DATA DUMMY
+// =====================
 func seedData() {
 	mahasiswa = []Mahasiswa{
-		{101, "Andi", "Informatika"},
-		{102, "Budi", "Sistem Informasi"},
-		{103, "Citra", "Teknik Komputer"},
-		{104, "Dewi", "Informatika"},
-		{105, "Eko", "Sistem Informasi"},
-		{106, "Fajar", "Teknik Komputer"},
-		{107, "Gita", "Informatika"},
-		{108, "Hadi", "Sistem Informasi"},
-		{109, "Intan", "Teknik Komputer"},
-		{110, "Joko", "Informatika"},
-		{111, "Kiki", "Sistem Informasi"},
-		{112, "Lina", "Teknik Komputer"},
-		{113, "Maya", "Informatika"},
-		{114, "Nina", "Sistem Informasi"},
-		{115, "Oka", "Teknik Komputer"},
-		{116, "Putu", "Informatika"},
-		{117, "Qori", "Sistem Informasi"},
-		{118, "Rina", "Teknik Komputer"},
-		{119, "Sari", "Informatika"},
-		{120, "Tono", "Sistem Informasi"},
-		{121, "Uli", "Teknik Komputer"},
-		{122, "Vina", "Informatika"},
-		{123, "Wawan", "Sistem Informasi"},
-		{124, "Xena", "Teknik Komputer"},
-		{125, "Yuni", "Informatika"},
-		{126, "Zaki", "Sistem Informasi"},
-		{127, "Adi", "Teknik Komputer"},
-		{128, "Bella", "Informatika"},
-		{129, "Caca", "Sistem Informasi"},
-		{130, "Dedi", "Teknik Komputer"},
+		{103072400101, "Andi", "Informatika"},
+		{103072400102, "Budi", "Sistem Informasi"},
+		{103072400103, "Citra", "Teknik Komputer"},
+		{103072400104, "Dewi", "Informatika"},
+		{103072400105, "Eko", "Sistem Informasi"},
+		{103072400106, "Fajar", "Teknik Komputer"},
+		{103072400107, "Gita", "Informatika"},
+		{103072400108, "Hadi", "Sistem Informasi"},
+		{103072400109, "Intan", "Teknik Komputer"},
+		{103072400110, "Joko", "Informatika"},
+		{103072400111, "Kiki", "Sistem Informasi"},
+		{103072400112, "Lina", "Teknik Komputer"},
+		{103072400113, "Maya", "Informatika"},
+		{103072400114, "Nina", "Sistem Informasi"},
+		{103072400115, "Oka", "Teknik Komputer"},
+		{103072400116, "Putu", "Informatika"},
+		{103072400117, "Qori", "Sistem Informasi"},
+		{103072400118, "Rina", "Teknik Komputer"},
+		{103072400119, "Sari", "Informatika"},
+		{103072400120, "Tono", "Sistem Informasi"},
+		{103072400121, "Uli", "Teknik Komputer"},
+		{103072400122, "Vina", "Informatika"},
+		{103072400123, "Wawan", "Sistem Informasi"},
+		{103072400124, "Xena", "Teknik Komputer"},
+		{103072400125, "Yuni", "Informatika"},
+		{103072400126, "Zaki", "Sistem Informasi"},
+		{103072400127, "Adi", "Teknik Komputer"},
+		{103072400128, "Bella", "Informatika"},
+		{103072400129, "Caca", "Sistem Informasi"},
+		{103072400130, "Dedi", "Teknik Komputer"},
 	}
 
 	mataKuliah = []MataKuliah{
@@ -132,36 +138,37 @@ func seedData() {
 	}
 
 	jadwalKuliah = []JadwalKuliah{
-		{101, "MK001", "Senin", "08:00"},
-		{102, "MK002", "Senin", "10:00"},
-		{103, "MK003", "Selasa", "08:00"},
-		{104, "MK004", "Selasa", "10:00"},
-		{105, "MK005", "Rabu", "08:00"},
-		{106, "MK006", "Rabu", "10:00"},
-		{107, "MK007", "Kamis", "08:00"},
-		{108, "MK008", "Kamis", "10:00"},
-		{109, "MK009", "Jumat", "08:00"},
-		{110, "MK010", "Jumat", "10:00"},
-		{111, "MK011", "Senin", "13:00"},
-		{112, "MK012", "Selasa", "13:00"},
-		{113, "MK013", "Rabu", "13:00"},
-		{114, "MK014", "Kamis", "13:00"},
-		{115, "MK015", "Jumat", "13:00"},
-		{116, "MK016", "Senin", "15:00"},
-		{117, "MK017", "Selasa", "15:00"},
-		{118, "MK018", "Rabu", "15:00"},
-		{119, "MK019", "Kamis", "15:00"},
-		{120, "MK020", "Jumat", "15:00"},
-		{121, "MK021", "Senin", "17:00"},
-		{122, "MK022", "Selasa", "17:00"},
-		{123, "MK023", "Rabu", "17:00"},
-		{124, "MK024", "Kamis", "17:00"},
-		{125, "MK025", "Jumat", "17:00"},
-		{126, "MK026", "Senin", "19:00"},
-		{127, "MK027", "Selasa", "19:00"},
-		{128, "MK028", "Rabu", "19:00"},
-		{129, "MK029", "Kamis", "19:00"},
-		{130, "MK030", "Jumat", "19:00"},
+		{103072400101, "MK001", "Senin", "08:00"},
+		{103072400101, "MK004", "Selasa", "10:00"},
+		{103072400102, "MK002", "Senin", "10:00"},
+		{103072400103, "MK003", "Selasa", "08:00"},
+		{103072400104, "MK004", "Selasa", "10:00"},
+		{103072400105, "MK005", "Rabu", "08:00"},
+		{103072400106, "MK006", "Rabu", "10:00"},
+		{103072400107, "MK007", "Kamis", "08:00"},
+		{103072400108, "MK008", "Kamis", "10:00"},
+		{103072400109, "MK009", "Jumat", "08:00"},
+		{103072400110, "MK010", "Jumat", "10:00"},
+		{103072400111, "MK011", "Senin", "13:00"},
+		{103072400112, "MK012", "Selasa", "13:00"},
+		{103072400113, "MK013", "Rabu", "13:00"},
+		{103072400114, "MK014", "Kamis", "13:00"},
+		{103072400115, "MK015", "Jumat", "13:00"},
+		{103072400116, "MK016", "Senin", "15:00"},
+		{103072400117, "MK017", "Selasa", "15:00"},
+		{103072400118, "MK018", "Rabu", "15:00"},
+		{103072400119, "MK019", "Kamis", "15:00"},
+		{103072400120, "MK020", "Jumat", "15:00"},
+		{103072400121, "MK021", "Senin", "17:00"},
+		{103072400122, "MK022", "Selasa", "17:00"},
+		{103072400123, "MK023", "Rabu", "17:00"},
+		{103072400124, "MK024", "Kamis", "17:00"},
+		{103072400125, "MK025", "Jumat", "17:00"},
+		{103072400126, "MK026", "Senin", "19:00"},
+		{103072400127, "MK027", "Selasa", "19:00"},
+		{103072400128, "MK028", "Rabu", "19:00"},
+		{103072400129, "MK029", "Kamis", "19:00"},
+		{103072400130, "MK030", "Jumat", "19:00"},
 	}
 }
 
@@ -179,8 +186,8 @@ func menuMahasiswa() {
 		fmt.Println("f. Lihat Mahasiswa Terurut")
 		fmt.Println("g. Kembali")
 		fmt.Print("Input: ")
-		opt := readLine()
-		switch opt {
+		input := readLine()
+		switch input {
 		case "a":
 			tampilMahasiswa()
 		case "b":
@@ -212,10 +219,10 @@ func menuMahasiswa() {
 }
 
 func tampilMahasiswa() {
-	fmt.Printf("%-10s %-20s %-20s\n", "NIM", "Nama", "Prodi")
+	fmt.Printf("%-20s %-20s %-20s\n", "NIM", "Nama", "Prodi")
 	fmt.Println(strings.Repeat("-", 50))
 	for _, m := range mahasiswa {
-		fmt.Printf("%-10d %-20s %-20s\n", m.NIM, m.Nama, m.Prodi)
+		fmt.Printf("%-20d %-20s %-20s\n", m.NIM, m.Nama, m.Prodi)
 	}
 }
 
@@ -293,9 +300,11 @@ func searchMahasiswa() {
 	fmt.Print("Masukkan nama mahasiswa: ")
 	nama := readLine()
 	found := false
+	fmt.Printf("%-20s %-20s %-20s\n", "NIM", "Nama", "Prodi")
+	fmt.Println(strings.Repeat("-", 50))
 	for _, m := range mahasiswa {
-		if strings.Contains(strings.ToLower(m.Nama), strings.ToLower(nama)) {
-			fmt.Println(m)
+		if strings.HasPrefix(strings.ToLower(m.Nama), strings.ToLower(nama)) {
+			fmt.Printf("%-20d %-20s %-20s\n", m.NIM, m.Nama, m.Prodi)
 			found = true
 		}
 	}
@@ -328,8 +337,8 @@ func menuMataKuliah() {
 		fmt.Println("f. Lihat Terurut (asc/desc)")
 		fmt.Println("g. Kembali")
 		fmt.Print("Input: ")
-		opt := readLine()
-		switch opt {
+		input := readLine()
+		switch input {
 		case "a":
 			tampilMataKuliah()
 		case "b":
@@ -445,10 +454,18 @@ func deleteMataKuliah() {
 func searchMataKuliah() {
 	fmt.Print("Masukkan nama mata kuliah: ")
 	nama := readLine()
+	found := false
+	fmt.Printf("%-10s %-30s %-5s %-10s %-10s\n", "KodeMK", "NamaMK", "SKS", "Hari", "Jam")
+	fmt.Println(strings.Repeat("-", 60))
 	for _, mk := range mataKuliah {
 		if strings.Contains(strings.ToLower(mk.NamaMK), strings.ToLower(nama)) {
-			fmt.Println(mk)
+			fmt.Printf("%-10s %-30s %-5d %-10s %-10s\n", mk.KodeMK, mk.NamaMK, mk.SKS, mk.Hari, mk.Jam)
+			found = true
 		}
+	}
+
+	if !found {
+		fmt.Println("Tidak ditemukan.")
 	}
 }
 
@@ -476,8 +493,8 @@ func menuJadwalKuliah() {
 		fmt.Println("f. Cari (berdasarkan NIM/KodeMK)")
 		fmt.Println("g. Kembali")
 		fmt.Print("Input: ")
-		opt := readLine()
-		switch opt {
+		input := readLine()
+		switch input {
 		case "a":
 			tampilJadwal()
 		case "b":
@@ -509,10 +526,10 @@ func menuJadwalKuliah() {
 }
 
 func tampilJadwal() {
-	fmt.Printf("%-10s %-10s %-10s %-10s\n", "NIM", "KodeMK", "Hari", "Jam")
+	fmt.Printf("%-20s %-10s %-10s %-10s\n", "NIM", "KodeMK", "Hari", "Jam")
 	fmt.Println(strings.Repeat("-", 40))
 	for _, jd := range jadwalKuliah {
-		fmt.Printf("%-10d %-10s %-10s %-10s\n", jd.NIM, jd.KodeMK, jd.Hari, jd.Jam)
+		fmt.Printf("%-20d %-10s %-10s %-10s\n", jd.NIM, jd.KodeMK, jd.Hari, jd.Jam)
 	}
 }
 
@@ -698,10 +715,18 @@ func deleteJadwal() {
 func searchJadwal() {
 	fmt.Print("Cari berdasarkan NIM/KodeMK: ")
 	query := readLine()
+	found := false
+	fmt.Printf("%-20s %-10s %-10s %-10s\n", "NIM", "KodeMK", "Hari", "Jam")
+	fmt.Println(strings.Repeat("-", 40))
 	for _, jd := range jadwalKuliah {
 		if strings.Contains(strconv.Itoa(jd.NIM), query) || strings.Contains(strings.ToLower(jd.KodeMK), strings.ToLower(query)) {
-			fmt.Println(jd)
+			fmt.Printf("%-20d %-10s %-10s %-10s\n", jd.NIM, jd.KodeMK, jd.Hari, jd.Jam)
+			found = true
 		}
+	}
+
+	if !found {
+		fmt.Println("Tidak ditemukan.")
 	}
 }
 
