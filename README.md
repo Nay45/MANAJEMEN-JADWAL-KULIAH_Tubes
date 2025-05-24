@@ -53,3 +53,9 @@ Berikut adalah tampilan output dari aplikasi ini:
 8. **Tampilan Searching Data**
 
 ![Image](https://github.com/user-attachments/assets/d6edad60-c43b-4bc0-9a9f-b801fabebee0)
+
+## 🚀 Cara Menjalankan
+
+1. Install **ManajemenJadwalKuliah.exe**
+
+2. double click pada **ManajemenJadwalKuliah.exe** dan siap dijalankan
