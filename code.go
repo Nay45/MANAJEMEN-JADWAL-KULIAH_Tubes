@@ -1,3 +1,13 @@
+// =====================
+// REVISI
+// =====================
+
+// 1, Ubah semua func delete menggunakan binary search untuk menghapus ✅
+// 2, Hapus bubble sort dan ubah menjadi algoritma selection sort dan insertion sort, jadi sorting akan dipisah menjadi 2 func berbeda untuk asc dan desc ✅
+// 3. Ganti laporan sesuai dengan revisi code
+
+// =====================
+
 package main
 
 import (
@@ -6,6 +16,7 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"sort"
 )
 
 type Mahasiswa struct {
@@ -72,72 +83,89 @@ func main() {
 // =====================
 func seedData() {
 	mahasiswa = []Mahasiswa{
+		{103072400111, "Kiki", "Sistem Informasi"},
+		{103072400109, "Intan", "Teknik Komputer"},
+		{103072400110, "Joko", "Informatika"},
+		{103072400117, "Qori", "Sistem Informasi"},
+		{103072400127, "Adi", "Teknik Komputer"},
+		{103072400128, "Bella", "Informatika"},
+		{103072400129, "Caca", "Sistem Informasi"},
+		{103072400130, "Dedi", "Teknik Komputer"},
+		{103072400112, "Lina", "Teknik Komputer"},
+		{103072400113, "Maya", "Informatika"},
+		{103072400114, "Nina", "Sistem Informasi"},
+		{103072400115, "Oka", "Teknik Komputer"},
+		{103072400116, "Putu", "Informatika"},
 		{103072400101, "Andi", "Informatika"},
 		{103072400102, "Budi", "Sistem Informasi"},
 		{103072400103, "Citra", "Teknik Komputer"},
 		{103072400104, "Dewi", "Informatika"},
 		{103072400105, "Eko", "Sistem Informasi"},
 		{103072400106, "Fajar", "Teknik Komputer"},
-		{103072400107, "Gita", "Informatika"},
-		{103072400108, "Hadi", "Sistem Informasi"},
-		{103072400109, "Intan", "Teknik Komputer"},
-		{103072400110, "Joko", "Informatika"},
-		{103072400111, "Kiki", "Sistem Informasi"},
-		{103072400112, "Lina", "Teknik Komputer"},
-		{103072400113, "Maya", "Informatika"},
-		{103072400114, "Nina", "Sistem Informasi"},
-		{103072400115, "Oka", "Teknik Komputer"},
-		{103072400116, "Putu", "Informatika"},
-		{103072400117, "Qori", "Sistem Informasi"},
-		{103072400118, "Rina", "Teknik Komputer"},
-		{103072400119, "Sari", "Informatika"},
-		{103072400120, "Tono", "Sistem Informasi"},
 		{103072400121, "Uli", "Teknik Komputer"},
 		{103072400122, "Vina", "Informatika"},
 		{103072400123, "Wawan", "Sistem Informasi"},
 		{103072400124, "Xena", "Teknik Komputer"},
+		{103072400107, "Gita", "Informatika"},
+		{103072400108, "Hadi", "Sistem Informasi"},
+		{103072400118, "Rina", "Teknik Komputer"},
+		{103072400119, "Sari", "Informatika"},
+		{103072400120, "Tono", "Sistem Informasi"},
 		{103072400125, "Yuni", "Informatika"},
 		{103072400126, "Zaki", "Sistem Informasi"},
-		{103072400127, "Adi", "Teknik Komputer"},
-		{103072400128, "Bella", "Informatika"},
-		{103072400129, "Caca", "Sistem Informasi"},
-		{103072400130, "Dedi", "Teknik Komputer"},
 	}
 
 	mataKuliah = []MataKuliah{
+		{"MK011", "Data Mining", 3, "Senin", "13:00"},
+		{"MK012", "Kecerdasan Buatan", 3, "Selasa", "13:00"},
+		{"MK013", "Pemrograman Web", 3, "Rabu", "13:00"},
 		{"MK001", "Pemrograman Dasar", 3, "Senin", "08:00"},
 		{"MK002", "Basis Data", 3, "Senin", "10:00"},
-		{"MK003", "Algoritma", 3, "Selasa", "08:00"},
-		{"MK004", "Jaringan Komputer", 3, "Selasa", "10:00"},
 		{"MK005", "Sistem Operasi", 3, "Rabu", "08:00"},
 		{"MK006", "Rekayasa Perangkat Lunak", 3, "Rabu", "10:00"},
 		{"MK007", "Matematika Diskrit", 3, "Kamis", "08:00"},
 		{"MK008", "Pemrograman Lanjut", 3, "Kamis", "10:00"},
 		{"MK009", "Keamanan Komputer", 3, "Jumat", "08:00"},
 		{"MK010", "Sistem Informasi", 3, "Jumat", "10:00"},
-		{"MK011", "Data Mining", 3, "Senin", "13:00"},
-		{"MK012", "Kecerdasan Buatan", 3, "Selasa", "13:00"},
-		{"MK013", "Pemrograman Web", 3, "Rabu", "13:00"},
 		{"MK014", "Grafika Komputer", 3, "Kamis", "13:00"},
 		{"MK015", "Basis Data Lanjut", 3, "Jumat", "13:00"},
-		{"MK016", "Pemrograman Mobile", 3, "Senin", "15:00"},
-		{"MK017", "Pengolahan Citra", 3, "Selasa", "15:00"},
-		{"MK018", "Komputasi Awan", 3, "Rabu", "15:00"},
-		{"MK019", "Pemrograman Game", 3, "Kamis", "15:00"},
-		{"MK020", "Internet of Things", 3, "Jumat", "15:00"},
-		{"MK021", "Big Data", 3, "Senin", "17:00"},
 		{"MK022", "Cloud Computing", 3, "Selasa", "17:00"},
 		{"MK023", "Analisis Data", 3, "Rabu", "17:00"},
 		{"MK024", "Manajemen Proyek", 3, "Kamis", "17:00"},
+		{"MK003", "Algoritma", 3, "Selasa", "08:00"},
+		{"MK004", "Jaringan Komputer", 3, "Selasa", "10:00"},
 		{"MK025", "Sistem Terdistribusi", 3, "Jumat", "17:00"},
 		{"MK026", "Robotika", 3, "Senin", "19:00"},
 		{"MK027", "Pengembangan Web", 3, "Selasa", "19:00"},
 		{"MK028", "Keamanan Jaringan", 3, "Rabu", "19:00"},
 		{"MK029", "Basis Data NoSQL", 3, "Kamis", "19:00"},
 		{"MK030", "Data Science", 3, "Jumat", "19:00"},
+		{"MK016", "Pemrograman Mobile", 3, "Senin", "15:00"},
+		{"MK017", "Pengolahan Citra", 3, "Selasa", "15:00"},
+		{"MK018", "Komputasi Awan", 3, "Rabu", "15:00"},
+		{"MK019", "Pemrograman Game", 3, "Kamis", "15:00"},
+		{"MK020", "Internet of Things", 3, "Jumat", "15:00"},
+		{"MK021", "Big Data", 3, "Senin", "17:00"},
 	}
 
 	jadwalKuliah = []JadwalKuliah{
+		{103072400113, "MK013", "Rabu", "13:00"},
+		{103072400114, "MK014", "Kamis", "13:00"},
+		{103072400115, "MK015", "Jumat", "13:00"},
+		{103072400123, "MK023", "Rabu", "17:00"},
+		{103072400124, "MK024", "Kamis", "17:00"},
+		{103072400125, "MK025", "Jumat", "17:00"},
+		{103072400116, "MK016", "Senin", "15:00"},
+		{103072400117, "MK017", "Selasa", "15:00"},
+		{103072400118, "MK018", "Rabu", "15:00"},
+		{103072400119, "MK019", "Kamis", "15:00"},
+		{103072400120, "MK020", "Jumat", "15:00"},
+		{103072400128, "MK028", "Rabu", "19:00"},
+		{103072400129, "MK029", "Kamis", "19:00"},
+		{103072400130, "MK030", "Jumat", "19:00"},
+		{103072400121, "MK021", "Senin", "17:00"},
+		{103072400122, "MK022", "Selasa", "17:00"},
+		{103072400126, "MK026", "Senin", "19:00"},
 		{103072400101, "MK001", "Senin", "08:00"},
 		{103072400101, "MK004", "Selasa", "10:00"},
 		{103072400102, "MK002", "Senin", "10:00"},
@@ -151,24 +179,7 @@ func seedData() {
 		{103072400110, "MK010", "Jumat", "10:00"},
 		{103072400111, "MK011", "Senin", "13:00"},
 		{103072400112, "MK012", "Selasa", "13:00"},
-		{103072400113, "MK013", "Rabu", "13:00"},
-		{103072400114, "MK014", "Kamis", "13:00"},
-		{103072400115, "MK015", "Jumat", "13:00"},
-		{103072400116, "MK016", "Senin", "15:00"},
-		{103072400117, "MK017", "Selasa", "15:00"},
-		{103072400118, "MK018", "Rabu", "15:00"},
-		{103072400119, "MK019", "Kamis", "15:00"},
-		{103072400120, "MK020", "Jumat", "15:00"},
-		{103072400121, "MK021", "Senin", "17:00"},
-		{103072400122, "MK022", "Selasa", "17:00"},
-		{103072400123, "MK023", "Rabu", "17:00"},
-		{103072400124, "MK024", "Kamis", "17:00"},
-		{103072400125, "MK025", "Jumat", "17:00"},
-		{103072400126, "MK026", "Senin", "19:00"},
 		{103072400127, "MK027", "Selasa", "19:00"},
-		{103072400128, "MK028", "Rabu", "19:00"},
-		{103072400129, "MK029", "Kamis", "19:00"},
-		{103072400130, "MK030", "Jumat", "19:00"},
 	}
 }
 
@@ -206,7 +217,13 @@ func menuMahasiswa() {
 					fmt.Println("Input salah! Harap masukkan 'asc' atau 'desc'.")
 					continue
 				}
-				sortMahasiswa(order == "asc")
+
+				if order == "asc" {
+					sortMahasiswaAsc()
+				} else {
+					sortMahasiswaDesc()
+				}
+				
 				tampilMahasiswa()
 				break
 			}
@@ -285,17 +302,30 @@ func deleteMahasiswa() {
 	fmt.Print("Masukkan NIM yang akan dihapus: ")
 	nimStr := readLine()
 	nim, err := strconv.Atoi(nimStr)
+
 	if err != nil {
 		fmt.Println("NIM harus berupa angka.")
 		return
 	}
-	for i, m := range mahasiswa {
-		if m.NIM == nim {
-			mahasiswa = append(mahasiswa[:i], mahasiswa[i+1:]...)
+
+	sort.Slice(mahasiswa, func(i, j int) bool {
+		return mahasiswa[i].NIM < mahasiswa[j].NIM
+	})
+
+	low, high := 0, len(mahasiswa)-1
+	for low <= high {
+		mid := (low + high) / 2
+		if mahasiswa[mid].NIM == nim {
+			mahasiswa = append(mahasiswa[:mid], mahasiswa[mid+1:]...)
 			fmt.Printf("Data mahasiswa dengan NIM %d berhasil di hapus\n", nim)
 			return
+		} else if mahasiswa[mid].NIM < nim {
+			low = mid + 1
+		} else {
+			high = mid - 1
 		}
 	}
+	
 	fmt.Println("Data tidak ditemukan.")
 }
 
@@ -316,13 +346,29 @@ func searchMahasiswa() {
 	}
 }
 
-func sortMahasiswa(asc bool) {
+// SELECTION SORT
+func sortMahasiswaAsc() {
 	for i := 0; i < len(mahasiswa)-1; i++ {
-		for j := 0; j < len(mahasiswa)-i-1; j++ {
-			if (asc && mahasiswa[j].NIM > mahasiswa[j+1].NIM) || (!asc && mahasiswa[j].NIM < mahasiswa[j+1].NIM) {
-				mahasiswa[j], mahasiswa[j+1] = mahasiswa[j+1], mahasiswa[j]
+		minIdx := i
+		for j := i + 1; j < len(mahasiswa); j++ {
+			if mahasiswa[j].NIM < mahasiswa[minIdx].NIM {
+				minIdx = j
 			}
 		}
+		mahasiswa[i], mahasiswa[minIdx] = mahasiswa[minIdx], mahasiswa[i]
+	}
+}
+
+// INSERTION SORT
+func sortMahasiswaDesc() {
+	for i := 1; i < len(mahasiswa); i++ {
+		temp := mahasiswa[i]
+		j := i - 1
+		for j >= 0 && mahasiswa[j].NIM < temp.NIM {
+			mahasiswa[j+1] = mahasiswa[j]
+			j--
+		}
+		mahasiswa[j+1] = temp
 	}
 }
 
@@ -360,7 +406,13 @@ func menuMataKuliah() {
 					fmt.Println("Input salah! Harap masukkan 'asc' atau 'desc'.")
 					continue
 				}
-				sortMataKuliah(order == "asc")
+
+				if order == "asc" {
+					sortMataKuliahAsc()
+				} else {
+					sortMataKuliahDesc()
+				}
+
 				tampilMataKuliah()
 				break
 			}
@@ -448,13 +500,25 @@ func updateMataKuliah() {
 func deleteMataKuliah() {
 	fmt.Print("Masukkan KodeMK yang akan dihapus: ")
 	kode := readLine()
-	for i, mk := range mataKuliah {
-		if mk.KodeMK == kode {
-			mataKuliah = append(mataKuliah[:i], mataKuliah[i+1:]...)
+
+	sort.Slice(mataKuliah, func(i, j int) bool {
+		return mataKuliah[i].KodeMK < mataKuliah[j].KodeMK
+	})
+
+	low, high := 0, len(mataKuliah)-1
+	for low <= high {
+		mid := (low + high) / 2
+		if mataKuliah[mid].KodeMK == kode {
+			mataKuliah = append(mataKuliah[:mid], mataKuliah[mid+1:]...)
 			fmt.Printf("Data mata kuliah dengan kode %s berhasil di hapus\n", kode)
 			return
+		} else if mataKuliah[mid].KodeMK < kode {
+			low = mid + 1
+		} else {
+			high = mid - 1
 		}
 	}
+	
 	fmt.Println("Data tidak ditemukan.")
 }
 
@@ -476,13 +540,29 @@ func searchMataKuliah() {
 	}
 }
 
-func sortMataKuliah(asc bool) {
+// SELECTION SORT
+func sortMataKuliahAsc() {
 	for i := 0; i < len(mataKuliah)-1; i++ {
-		for j := 0; j < len(mataKuliah)-i-1; j++ {
-			if (asc && mataKuliah[j].KodeMK > mataKuliah[j+1].KodeMK) || (!asc && mataKuliah[j].KodeMK < mataKuliah[j+1].KodeMK) {
-				mataKuliah[j], mataKuliah[j+1] = mataKuliah[j+1], mataKuliah[j]
+		minIdx := i
+		for j := i + 1; j < len(mataKuliah); j++ {
+			if mataKuliah[j].KodeMK < mataKuliah[minIdx].KodeMK {
+				minIdx = j
 			}
 		}
+		mataKuliah[i], mataKuliah[minIdx] = mataKuliah[minIdx], mataKuliah[i]
+	}
+}
+
+// INSERTION SORT
+func sortMataKuliahDesc() {
+	for i := 1; i < len(mataKuliah); i++ {
+		temp := mataKuliah[i]
+		j := i - 1
+		for j >= 0 && mataKuliah[j].KodeMK < temp.KodeMK {
+			mataKuliah[j+1] = mataKuliah[j]
+			j--
+		}
+		mataKuliah[j+1] = temp
 	}
 }
 
@@ -518,7 +598,13 @@ func menuJadwalKuliah() {
 					fmt.Println("Input salah! Harap masukkan 'asc' atau 'desc'.")
 					continue
 				}
-				sortJadwal(order == "asc")
+				
+				if order == "asc" {
+					sortJadwalAsc()
+				} else {
+					sortJadwalDesc()
+				}
+
 				tampilJadwal()
 				break
 			}
@@ -706,6 +792,7 @@ func deleteJadwal() {
 	fmt.Print("Masukkan NIM untuk jadwal yang dihapus: ")
 	nimStr := readLine()
 	nim, err := strconv.Atoi(nimStr)
+	
 	if err != nil {
 		fmt.Println("NIM harus berupa angka.")
 		return
@@ -739,19 +826,29 @@ func deleteJadwal() {
 		return
 	}
 
-	deleted := false
-	for i := 0; i < len(jadwalKuliah); i++ {
-		if jadwalKuliah[i].NIM == nim && jadwalKuliah[i].KodeMK == kodeMK {
-			jadwalKuliah = append(jadwalKuliah[:i], jadwalKuliah[i+1:]...)
-			deleted = true
+	sort.Slice(jadwalKuliah, func(i, j int) bool {
+		if jadwalKuliah[i].NIM == jadwalKuliah[j].NIM {
+			return jadwalKuliah[i].KodeMK < jadwalKuliah[j].KodeMK
+		}
+		return jadwalKuliah[i].NIM < jadwalKuliah[j].NIM
+	})
+
+	low, high := 0, len(jadwalKuliah)-1
+	for low <= high {
+		mid := (low + high) / 2
+		midJadwal := jadwalKuliah[mid]
+		if midJadwal.NIM == nim && midJadwal.KodeMK == kodeMK {
+			jadwalKuliah = append(jadwalKuliah[:mid], jadwalKuliah[mid+1:]...)
 			fmt.Printf("Jadwal dari NIM %d dengan kode MK %s berhasil dihapus\n", nim, kodeMK)
-			break
+			return
+		} else if midJadwal.NIM < nim || (midJadwal.NIM == nim && midJadwal.KodeMK < kodeMK) {
+			low = mid + 1
+		} else {
+			high = mid - 1
 		}
 	}
 
-	if !deleted {
-		fmt.Println("KodeMK tidak ditemukan untuk NIM tersebut.")
-	}
+	fmt.Println("KodeMK tidak ditemukan untuk NIM tersebut.")
 }
 
 func searchJadwal() {
@@ -772,13 +869,29 @@ func searchJadwal() {
 	}
 }
 
-func sortJadwal(asc bool) {
+// SELECTION SORT
+func sortJadwalAsc() {
 	for i := 0; i < len(jadwalKuliah)-1; i++ {
-		for j := 0; j < len(jadwalKuliah)-i-1; j++ {
-			if (asc && jadwalKuliah[j].NIM > jadwalKuliah[j+1].NIM) || (!asc && jadwalKuliah[j].NIM < jadwalKuliah[j+1].NIM) {
-				jadwalKuliah[j], jadwalKuliah[j+1] = jadwalKuliah[j+1], jadwalKuliah[j]
+		minIdx := i
+		for j := i + 1; j < len(jadwalKuliah); j++ {
+			if jadwalKuliah[j].NIM < jadwalKuliah[minIdx].NIM {
+				minIdx = j
 			}
 		}
+		jadwalKuliah[i], jadwalKuliah[minIdx] = jadwalKuliah[minIdx], jadwalKuliah[i]
+	}
+}
+
+// INSERTION SORT
+func sortJadwalDesc() {
+	for i := 1; i < len(jadwalKuliah); i++ {
+		temp := jadwalKuliah[i]
+		j := i - 1
+		for j >= 0 && jadwalKuliah[j].NIM < temp.NIM {
+			jadwalKuliah[j+1] = jadwalKuliah[j]
+			j--
+		}
+		jadwalKuliah[j+1] = temp
 	}
 }
 
